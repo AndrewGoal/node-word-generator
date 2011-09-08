@@ -1,0 +1,17 @@
+{
+  "author": "Andrew Goal <androidgao@gmail.com> (https://plus.google.com/116766125570728404851/about)",
+  "name": "word-generator",
+  "description": "Generate(random or in order) a word or many words which can be used as (guess/crack) passwords, keys etc in nodejs.",
+  "version": "0.0.1",
+  "homepage": "https://github.com/AndrewGoal/node-word-generator",
+  "repository": {
+      "type": "git",
+      "url": "git://github.com/AndrewGoal/node-word-generator.git"
+  },
+  "main": "./word-generator.js",
+  "engines": {
+      "node": ">=v0.4.0"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
