@@ -4,3 +4,9 @@ Features:
 
 * Generate(random or in order) a word or many words which can be used as (guess/crack) passwords, keys etc in nodejs.
 * You can specify your letters to  generate words or use default letters(A-Z,a-z,0-9).
+
+
+Install:
+
+ npm install word-generator
+
