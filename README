@@ -10,3 +10,30 @@ Install:
 
  npm install word-generator
 
+Example:
+
+> var WG = require('word-generator');
+
+> var wg = new WG.WordsGenerator();
+
+> wg.generateWord()
+'j4AWKwVdni'
+> wg.generateWord()
+'xi5UYW8kLj'
+
+
+> wg.getMaxCountCanBeGenerate()
+839299365868340200
+
+> wg.generateWordsToObject(10); //each key in Object is unique
+{ SCXI05S3xk: true,
+  Aiy71JW6PG: true,
+  td0LUsrAJ6: true,
+  yi8l3M03UV: true,
+  NRLwdPlpJ3: true,
+  W8XQCmicgO: true,
+  ZY3ucczf6u: true,
+  BHYox5GAi2: true,
+  RsUFNStamq: true,
+  aSnkKqYCOY: true }
+
