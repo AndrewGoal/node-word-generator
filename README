@@ -15,6 +15,15 @@ Example:
 > var WG = require('word-generator');
 
 > var wg = new WG.WordsGenerator();
+> wg
+{ width: 10,
+  letters: 
+      [
+            '0','1','2','3','4','5','6','7','8','9',
+            'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
+	    'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'
+      ]
+}
 
 > wg.generateWord()
 'j4AWKwVdni'
@@ -37,3 +46,28 @@ Example:
   RsUFNStamq: true,
   aSnkKqYCOY: true }
 
+> wg = new WG.WordsGenerator(2,'abc');
+> wg
+{ width: 2, letters: [ 'a', 'b', 'c' ] }
+
+For each word callback:
+> var allWords = wg.generateAllWordsToObject(function eachWordCallback(word,index){console.log(index,word)});
+1 'ba'
+2 'bb'
+3 'cc'
+4 'ab'
+5 'ac'
+6 'bc'
+7 'aa'
+8 'ca'
+9 'cb'
+> allWords
+{ ba: true,
+  bb: true,
+  cc: true,
+  ab: true,
+  ac: true,
+  bc: true,
+  aa: true,
+  ca: true,
+  cb: true }

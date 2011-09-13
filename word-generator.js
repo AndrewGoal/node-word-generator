@@ -1,3 +1,5 @@
+//todo:with order without order
+
 function WordsGenerator (width,letters){
 
     if(width){
@@ -47,8 +49,9 @@ function WordsGenerator (width,letters){
 WordsGenerator.prototype.generateWord = function (){
 
     var word = [];
+    var lettersLen = this.letters.length;
     while(word.length<this.width){
-	word.push(this.letters[Math.floor(Math.random()*this.letters.length)]);
+	word.push(this.letters[Math.floor(Math.random()*lettersLen)]);
     }
     return word.join('');
 }
@@ -57,7 +60,11 @@ WordsGenerator.prototype.getMaxCountCanBeGenerate =  function (){
     return Math.pow(this.letters.length,this.width);
 }
 
-WordsGenerator.prototype.generateWordsToObject =  function (count){
+WordsGenerator.prototype.generateAllWordsToObject = function (eachWordCallback){
+    return this.generateWordsToObject(this.getMaxCountCanBeGenerate(),eachWordCallback);
+}
+
+WordsGenerator.prototype.generateWordsToObject =  function (count,eachWordCallback){
     // max count on my notebook 8G memory  FATAL ERROR: CALL_AND_RETRY_0 Allocation failed - process out of memory
     var max = this.getMaxCountCanBeGenerate();
     if(max<count){
@@ -74,35 +81,35 @@ WordsGenerator.prototype.generateWordsToObject =  function (count){
 	}
 	else{
 	    rets[word] = true;
+	    if(eachWordCallback){
+		eachWordCallback(word,_count+1);
+	    }
 	    _count++;
 	}
     }
     return rets;
 }
 
-WordsGenerator.prototype.generateWordsToFile = function (count,path){
+WordsGenerator.prototype.generateAllWordsToFile = function (path,eachWordCallback){
+    return this.generateWordsToFile(this.getMaxCountCanBeGenerate(),path,eachWordCallback);
+}
+
+
+WordsGenerator.prototype.generateWordsToFile = function (count,path,eachWordCallback){
     //todo :use memory db for huge count gen
 
-    var out = this.generateWordsToObject(count);
+    var out = this.generateWordsToObject(count,eachWordCallback);
     var fs = require('fs');
     var _out=[];
     for (var word in out){
 	_out.push(word);
     }
 
-    if(!path){path = 'yourWords.txt';}
+    path = path? path : 'yourWords.txt';
     console.log('write to ',path);
     fs.writeFile(path, _out.join('\n'));
 }
 
-// WordsGenerator.prototype.forEachWord = function (callback) {
-//     //todo: one by one
-    
-// }
-
-// WordsGenerator.prototype.forEachWordWithoutOrder = function (callback) {
-//     //todo: random
-// //    this.
-// }
-
 module.exports.WordsGenerator = WordsGenerator;
+
+// var wg = new (require('./word-generator.js').WordsGenerator)(3,'123abc');
